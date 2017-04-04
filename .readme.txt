@@ -1,0 +1,136 @@
+REACT
+source: https://scotch.io/tutorials/learning-react-getting-started-and-concepts
+
+THEORY
+
+UI library developed at Facebook to facilitate the creation of interactive, stateful & reusable components.
+
+It doesn't only perform on the client side, it can also be rendered server side,
+and they can work together inter-operably.
+
+It uses the concept called the Virtual DOM that selectively renders subtrees of nodes based upon
+state changes. It does the least amount of DOM manipulation possible in order to keep your components
+up to date.
+
+Imagine you had an object that you modeled around a person.
+It had every relevant property a person could possibly have, and mirrored the persons current state.
+This is basically what React does with the DOM.
+
+Now think about if you took that object and made some changes.
+Added a mustache, some sweet biceps and Steve Buscemi eyes.
+In React-land, when we apply these changes, two things take place.
+First, React runs a “diffing” algorithm, which identifies what has changed.
+The second step is reconciliation, where it updates the DOM with the results of diff.
+
+The way React works, rather than taking the real person and rebuilding them from the ground up,
+it would only change the face and the arms.
+This means that if you had text in an input and a render took place,
+as long as the input’s parent node wasn’t scheduled for reconciliation, the text would stay undisturbed.
+
+Because React is using a fake DOM and not a real one, it also opens up a fun new possibility.
+We can render that fake DOM on the server, and boom, server side React views.
+
+The React DOM implementation was initially in the React library but become a stand alone library in v0.14
+
+React’s basic building blocks are called components
+
+Let's address the elephant in the room first. You will be writing XML with your React code.
+
+JSX is a preprocessor step that adds XML syntax to JavaScript.
+You can definitely use React without JSX but JSX makes React a lot more elegant.
+
+COMPONENTS
+Always start component names with a capital letter.
+For example, <div /> represents a DOM tag, but <Welcome /> represents a component and requires Welcome to be in scope.
+
+REACT ROUTER
+React Router keeps your UI in sync with the URL.
+It has a simple API with powerful features like lazy code loading, dynamic route matching,
+and location transition handling built right in.
+Make the URL your first thought, not an after-thought.
+
+PROPS VS STATE
+Data for given component are held in two places, props and state.
+Props - look like HTML attributes, but immutable, they are passed by the parent,
+so they are virtually owned by parent.
+this.props.username
+Allow you to pass data down to child components
+
+State holds mutable state.
+Use it only on controller views - top level components.
+Pass data down to you child components via props.
+
+LIFECYCLE
+getInitialState sets initial state of the component, should typically be done in a top level component.
+getDefaultProps
+
+componentWillMount runs before initial render, and its a good spot to set initial state.
+
+componentDidMount runs after render, by the time it is ran, the components DOM exists.
+So you can interact with third party libraries.
+PRACTICE
+
+How and where to fetch data
+
+source: https://daveceddia.com/ajax-requests-in-react/
+
+First: React itself doesn’t have any allegiance to any particular way of fetching data.
+In fact, as far as React is concerned, it doesn’t even know there’s a “server” in the picture at all.
+
+You can complicate this process with services and data models (er, “build abstractions”)
+as much as you desire, but ultimately it’s just components rendering props and state.
+To fetch that data from the server, you’ll need an HTTP library.
+
+TL;DR: Fetch server data in the componentDidMount lifecycle method
+
+
+componentDidMount () {
+  axios.get('https://jsonplaceholder.typicode.com/users')
+    .then(({ data }) => {
+      console.log('received data', data)
+      this.setState({
+        users: data
+      })
+    })
+},
+
+
+HashRouter vs BrowserRouter
+
+
+Link u reactstrap navbaru
+<NavLink tag={Link} to="/users">Users</NavLink>
+
+
+
+https://medium.com/@dan_abramov/mixins-are-dead-long-live-higher-order-components-94a0d2f9e750#.gu3ifr6tu
+https://facebook.github.io/react/blog/2016/07/13/mixins-considered-harmful.html
+https://ilikekillnerds.com/2015/02/developing-react-js-components-using-es6/
+https://facebook.github.io/react/docs/context.html
+
+
+https://medium.com/@dan_abramov/smart-and-dumb-components-7ca2f9a7c7d0#.pqy4fd1c5
+TODO
+
+programatically redirect both hashrouter and browserrouter if userId doesn't exist.
+
+
+FLUX
+
+Action is triggered,
+payload sends data to the dispatcher.
+Payload always has the same structure:
+ - type and data
+
+ Example
+ Payload:
+  {
+    type: USER_SAVED,
+    data: {
+      firstName: 'Cory',
+      secondName: 'House'
+    }
+  }
+
+
+FLUX API
