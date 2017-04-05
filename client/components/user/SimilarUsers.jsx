@@ -16,12 +16,13 @@ import userStore from './../../stores/userStore'
 import postStore from './../../stores/postStore'
 /* eslint-enable no-unused-vars */
 
-const SimilarUsers = React.createClass({
-  getInitialState () {
-    return {
+class SimilarUsers extends React.Component {
+  constructor (props) {
+    super(props)
+    this.state = {
       users: []
     }
-  },
+  }
 
   render () {
     const similarUsers = this.props.users.map(user => {
@@ -32,7 +33,7 @@ const SimilarUsers = React.createClass({
           <Card>
             <CardBlock>
               <CardTitle>
-                 <Link to={ `/users/${user.id}` }>{ user.name }</Link>
+                 <Link to={`/users/${user.id}`}>{ user.name }</Link>
               </CardTitle>
               <CardSubtitle>{companyName} {phrase}</CardSubtitle>
             </CardBlock>
@@ -43,12 +44,10 @@ const SimilarUsers = React.createClass({
 
     return (
       <div className="similar-users">
-        <Row>
-          {similarUsers}
-        </Row>
+        <Row>{similarUsers}</Row>
       </div>
     )
   }
-})
+}
 
 export default SimilarUsers

@@ -21,7 +21,7 @@ import {
 } from 'react-router-dom'
 /* eslint-enable no-unused-vars */
 
-const App = React.createClass({
+class App extends React.Component {
   render () {
     return (
       <HashRouter>
@@ -36,6 +36,6 @@ const App = React.createClass({
       </HashRouter>
     )
   }
-})
+}
 
 export default App
